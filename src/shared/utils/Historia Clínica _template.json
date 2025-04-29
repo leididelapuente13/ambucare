@@ -1,0 +1,317 @@
+{
+  "name": "Historia Clínica ",
+  "description": "",
+  "version": 1,
+  "sections": [
+    {
+      "id": "96305bb5-60c1-4c19-b74a-f5eabb7340ea",
+      "name": "Datos de la consulta",
+      "colNumber": 2,
+      "orderIndex": 0,
+      "fields": [
+        {
+          "id": "field-1",
+          "name": "",
+          "label": "Fecha de consulta",
+          "placeholder": "Fecha de consulta",
+          "type": "date",
+          "required": true,
+          "columnSpan": 1,
+          "orderIndex": 0
+        },
+        {
+          "id": "field-2",
+          "name": "",
+          "label": "Plan / Administradora",
+          "placeholder": "Plan / Administradora",
+          "type": "select",
+          "required": true,
+          "columnSpan": 2,
+          "orderIndex": 1
+        },
+        {
+          "id": "field-3",
+          "name": "",
+          "label": "Tipo de consulta",
+          "placeholder": "Tipo de consulta",
+          "type": "select",
+          "required": true,
+          "columnSpan": 2,
+          "orderIndex": 2
+        },
+        {
+          "id": "field-4",
+          "name": "",
+          "label": "Motivo de consulta",
+          "placeholder": "Motivo de consulta",
+          "type": "textarea",
+          "required": false,
+          "columnSpan": 2,
+          "orderIndex": 3
+        },
+        {
+          "id": "field-5",
+          "name": "",
+          "label": "Enfermedad actual",
+          "placeholder": "Enfermedad actual",
+          "type": "textarea",
+          "required": true,
+          "columnSpan": 2,
+          "orderIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "f1b87a86-781d-4c1b-bf75-1399114014d2",
+      "name": "Antecedentes",
+      "colNumber": 1,
+      "orderIndex": 1,
+      "fields": [
+        {
+          "id": "field-1",
+          "name": "",
+          "label": "Antecedentes",
+          "placeholder": "Antecedentes",
+          "type": "textarea",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 0
+        },
+        {
+          "id": "field-2",
+          "name": "",
+          "label": "Revisión por sistemas",
+          "placeholder": "Revisión por sistemas",
+          "type": "textarea",
+          "required": true,
+          "columnSpan": 1,
+          "orderIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "1f657845-16d1-499c-8b4e-5ddda894718c",
+      "name": "Signos vitales",
+      "colNumber": 3,
+      "orderIndex": 2,
+      "fields": [
+        {
+          "id": "field-1",
+          "name": "",
+          "label": "Frecuencia Cardiaca",
+          "placeholder": "min",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 0
+        },
+        {
+          "id": "field-2",
+          "name": "",
+          "label": "Frecuencia Respiratoria",
+          "placeholder": "min",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 1
+        },
+        {
+          "id": "field-3",
+          "name": "",
+          "label": "Temperatura",
+          "placeholder": "°C",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 2
+        },
+        {
+          "id": "field-4",
+          "name": "",
+          "label": "Presión Sistólica",
+          "placeholder": "mmHg",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 3
+        },
+        {
+          "id": "field-5",
+          "name": "",
+          "label": "Presión Diastólica",
+          "placeholder": "mmHg",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 4
+        },
+        {
+          "id": "field-6",
+          "name": "",
+          "label": "Presión Arterial Media",
+          "placeholder": "mmHg",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 5
+        },
+        {
+          "id": "field-7",
+          "name": "",
+          "label": "Talla",
+          "placeholder": "m",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 6
+        },
+        {
+          "id": "field-8",
+          "name": "",
+          "label": "Peso",
+          "placeholder": "Kg",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 7
+        },
+        {
+          "id": "field-9",
+          "name": "",
+          "label": "Índice de Masa Corporal",
+          "placeholder": "kg/m²",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 8
+        },
+        {
+          "id": "field-10",
+          "name": "",
+          "label": "Superficie de Masa Corporal",
+          "placeholder": "m²",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 9
+        }
+      ]
+    },
+    {
+      "id": "64164d50-6813-452b-8789-b963c7b45ff9",
+      "name": "Resultados",
+      "colNumber": 1,
+      "orderIndex": 3,
+      "fields": [
+        {
+          "id": "field-1",
+          "name": "",
+          "label": "Resumen de datos positivos",
+          "placeholder": "Resumen ",
+          "type": "textarea",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 0
+        },
+        {
+          "id": "field-2",
+          "name": "",
+          "label": "Resultado de examenes",
+          "placeholder": "Resultados",
+          "type": "textarea",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 1
+        },
+        {
+          "id": "field-3",
+          "name": "",
+          "label": "Análisis ",
+          "placeholder": "Análisis ",
+          "type": "textarea",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "52122a5e-0bda-4845-9a42-fcfced80c7b7",
+      "name": "Rips",
+      "colNumber": 1,
+      "orderIndex": 4,
+      "fields": [
+        {
+          "id": "field-1",
+          "name": "",
+          "label": "Consulta",
+          "placeholder": "Consulta",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 0
+        },
+        {
+          "id": "field-2",
+          "name": "",
+          "label": "Finalidad de la consulta",
+          "placeholder": "Finalidad de la consulta",
+          "type": "select",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 1
+        },
+        {
+          "id": "field-3",
+          "name": "",
+          "label": "Causa externa",
+          "placeholder": "Seleccione",
+          "type": "select",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 2
+        },
+        {
+          "id": "field-4",
+          "name": "",
+          "label": "Tipo de diagnostico principal",
+          "placeholder": "Seleccione...",
+          "type": "select",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 3
+        },
+        {
+          "id": "field-5",
+          "name": "",
+          "label": "Amerita manejo quirúrgico ",
+          "placeholder": "Seleccione...",
+          "type": "select",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 4
+        },
+        {
+          "id": "field-6",
+          "name": "",
+          "label": "Otros diagnósticos ",
+          "placeholder": "Otros diagnósticos ",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 5
+        },
+        {
+          "id": "field-7",
+          "name": "",
+          "label": "Plan de Tratamiento",
+          "placeholder": "Plan de Tratamiento",
+          "type": "text",
+          "required": false,
+          "columnSpan": 1,
+          "orderIndex": 6
+        }
+      ]
+    }
+  ]
+}

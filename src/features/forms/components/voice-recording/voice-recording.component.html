@@ -1,0 +1,26 @@
+<div class="text-white font-medium flex flex-col gap-1.5">
+  <div class="flex gap-2 justify-between">
+    <button (click)="start()" [disabled]="isRecording()">Empezar</button>
+    <button (click)="pauseResume()" [disabled]="!isRecording()">
+      {{ isPaused() ? "Reanudar" : "Pausar" }}
+    </button>
+    <button (click)="stop()" [disabled]="!isRecording()">Detener</button>
+    <button (click)="download()" [disabled]="!audioUrl()">Descargar</button>
+  </div>
+
+  <div class="status">
+    <p *ngIf="isRecording() && !isPaused()" class="font-semibold">
+      Grabando... ({{ formattedDuration() }})
+    </p>           
+    <p *ngIf="isPaused()">Pausado</p>
+    <p *ngIf="isLoading()">Procesando Audio...</p>
+  </div>
+
+  <audio
+    *ngIf="audioUrl()"
+    #audioPlayer
+    controls
+    [src]="audioUrl()"
+    class="opacity-0.9 h-[30px] bg-white rounded-sm"
+  ></audio>
+</div>

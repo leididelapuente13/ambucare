@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+
+.trapezoid {
+  width: 500px;
+  height: 160px;
+  background-color: #37b7ff;
+  clip-path: polygon(0% 100%, 15% 0%, 100% 0%, 100% 100%);
+  z-index: 0;
+}
