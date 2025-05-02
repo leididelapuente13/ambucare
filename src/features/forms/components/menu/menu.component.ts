@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SpeedDialModule } from 'primeng/speeddial';
+import { SummaryDialogService } from '../../../patients/components/summary-dialog/summary-dialog.service';
 
 @Component({
   selector: 'forms-menu',
@@ -8,40 +9,15 @@ import { SpeedDialModule } from 'primeng/speeddial';
   styles: ``
 })
 export class MenuComponent {
+
+  dialogService = inject(SummaryDialogService);
+
   items = [
     {
-      label: 'Add',
-      icon: 'pi pi-plus',
-      command: () => {
-        console.log('Add action clicked');
-      }
-    },
-    {
-      label: 'Edit',
-      icon: 'pi pi-pencil',
-      command: () => {
-        console.log('Edit action clicked');
-      }
-    },
-    {
-      label: 'Delete',
-      icon: 'pi pi-trash',
-      command: () => {
-        console.log('Delete action clicked');
-      }
-    },
-    {
-      label: 'Upload',
-      icon: 'pi pi-upload',
-      command: () => {
-        console.log('Upload action clicked');
-      }
-    },
-    {
-      label: 'Download',
-      icon: 'pi pi-download',
-      command: () => {
-        console.log('Download action clicked');
+      label: 'Resumen',
+      icon: 'pi pi-clipboard',
+      command: ()=>{
+        this.dialogService.triggerShow();
       }
     }
   ];
