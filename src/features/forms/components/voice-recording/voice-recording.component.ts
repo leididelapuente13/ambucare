@@ -1,60 +1,113 @@
-import { CommonModule } from "@angular/common";
-import { Component, computed, inject, signal } from "@angular/core";
-import { VoiceRecordingService } from "./voice-recording.service";
+import { NgClass } from '@angular/common';
+import { Component, signal, computed, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'forms-voice-recording',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './voice-recording.component.html',
+  imports: [NgClass]
 })
-export class AudioRecorderComponent {
-  voiceRecordingService = inject(VoiceRecordingService);
+export class VoiceRecordingComponent {
+  private mediaRecorder!: MediaRecorder;
+  private chunks: Blob[] = [];
+  private startTime = 0;
+  private maxDuration = 20 * 60;
+  private intervalId: any;
+
+  // Signals
   isRecording = signal(false);
   isPaused = signal(false);
-  audioUrl = signal<string | null>(null);
   isLoading = signal(false);
+  elapsedTime = signal(0);
+  audioBlob = signal<Blob | null>(null);
+  audioUrl = signal<string | null>(null);
 
-  formattedDuration = computed(() => this.voiceRecordingService.getRecordingTime());
+  // Computed signal for display
+  formattedTime = computed(() => {
+    const total = this.elapsedTime();
+    const minutes = Math.floor(total / 60).toString().padStart(2, '0');
+    const seconds = (total % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  });
 
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  async start() {
-    this.audioUrl.set(null);
-    this.isRecording.set(true);
-    this.isPaused.set(false);
-    await this.voiceRecordingService.startRecording();
+  start() {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+      this.mediaRecorder = new MediaRecorder(stream);
+      this.chunks = [];
+      this.elapsedTime.set(0);
+      this.audioBlob.set(null);
+      this.audioUrl.set(null);
+
+      this.mediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) this.chunks.push(e.data);
+      };
+
+      this.mediaRecorder.onstop = () => {
+        this.isLoading.set(true);
+        this.cdr.detectChanges(); // ensure loading shows
+
+        const blob = new Blob(this.chunks, { type: 'audio/webm' });
+        const url = URL.createObjectURL(blob);
+        this.audioBlob.set(blob);
+        this.audioUrl.set(url);
+        this.isLoading.set(false);
+        this.cdr.detectChanges(); // update UI
+      };
+
+      this.mediaRecorder.start();
+      this.isRecording.set(true);
+      this.isPaused.set(false);
+      this.startTimer();
+      this.cdr.detectChanges();
+    });
   }
 
   pauseResume() {
+    if (!this.mediaRecorder) return;
+
     if (this.isPaused()) {
-      this.voiceRecordingService.resumeRecording();
+      this.mediaRecorder.resume();
       this.isPaused.set(false);
+      this.startTimer();
     } else {
-      this.voiceRecordingService.pauseRecording();
+      this.mediaRecorder.pause();
       this.isPaused.set(true);
+      clearInterval(this.intervalId);
     }
+
+    this.cdr.detectChanges();
   }
 
-  async stop() {
+  stop() {
+    if (!this.mediaRecorder) return;
+
+    this.mediaRecorder.stop();
+    this.mediaRecorder.stream.getTracks().forEach((track) => track.stop());
     this.isRecording.set(false);
     this.isPaused.set(false);
-    this.isLoading.set(true);
-
-    try {
-      const blob = await this.voiceRecordingService.stopRecording();
-      const url = URL.createObjectURL(blob);
-      this.audioUrl.set(url);
-    } catch (err) {
-      console.error('Failed to stop recording:', err);
-    } finally {
-      this.isLoading.set(false);
-    }
+    clearInterval(this.intervalId);
+    this.cdr.detectChanges();
   }
 
   download() {
+    if (!this.audioBlob()) return;
     const a = document.createElement('a');
     a.href = this.audioUrl()!;
-    a.download = 'recording.wav';
+    a.download = 'grabacion.webm';
     a.click();
+  }
+
+  private startTimer() {
+    this.intervalId = setInterval(() => {
+      const newTime = this.elapsedTime() + 1;
+      if (newTime >= this.maxDuration) {
+        this.stop();
+        return;
+      }
+      this.elapsedTime.set(newTime);
+      this.cdr.detectChanges();
+    }, 1000);
   }
 }

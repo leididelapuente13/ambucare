@@ -1,26 +1,34 @@
-<div class="text-white font-medium flex flex-col gap-1.5">
-  <div class="flex gap-2 justify-between">
-    <button (click)="start()" [disabled]="isRecording()">Empezar</button>
-    <button (click)="pauseResume()" [disabled]="!isRecording()">
-      {{ isPaused() ? "Reanudar" : "Pausar" }}
+<div class="text-white font-medium flex flex-col gap-1.5 mt-3 md:mt-0">
+  <div class="flex gap-2 justify-between bg-white rounded-md py-1 px-2 text-black">
+    <button (click)="start()" [disabled]="isRecording()">
+      <i [ngClass]="{'pi pi-circle-fill' : isRecording() && !isPaused()}" style="color: darkred"></i>
+      <i [ngClass]="{'pi pi-microphone' : !isRecording()}"></i>
     </button>
-    <button (click)="stop()" [disabled]="!isRecording()">Detener</button>
-    <button (click)="download()" [disabled]="!audioUrl()">Descargar</button>
+    <button (click)="pauseResume()" [disabled]="!isRecording()">
+      @if (isPaused()) {
+      <i class="pi pi-play"></i>
+      }@else {
+      <i class="pi pi-pause"></i>
+      }
+    </button>
+    <button (click)="stop()" [disabled]="!isRecording()">
+      <i class="pi pi-stop"></i>
+    </button>
+    <button (click)="download()" [disabled]="!audioUrl()">
+      <i class="pi pi-download"></i>
+    </button>
   </div>
 
-  <div class="status">
-    <p *ngIf="isRecording() && !isPaused()" class="font-semibold">
-      Grabando... ({{ formattedDuration() }})
-    </p>           
-    <p *ngIf="isPaused()">Pausado</p>
-    <p *ngIf="isLoading()">Procesando Audio...</p>
+  @if (isRecording() || isPaused()) {
+  <div class="self-center">
+    <p class="font-semibold">({{ formattedTime() }})</p>
   </div>
-
+  } @if (audioUrl()) {
   <audio
-    *ngIf="audioUrl()"
     #audioPlayer
     controls
     [src]="audioUrl()"
-    class="opacity-0.9 h-[30px] bg-white rounded-sm"
+    class="opacity-90 h-[30px] bg-white rounded-sm"
   ></audio>
+  }
 </div>

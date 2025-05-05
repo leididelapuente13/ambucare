@@ -1,7 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import historia_clinica  from '../../../../../shared/utils/Historia Clínica _template.json';
-import { AudioRecorderComponent } from '../../../components/voice-recording/voice-recording.component';
+import historia_clinica from '../../../../../shared/utils/Historia Clínica _template.json';
+import { VoiceRecordingComponent
+ } from '../../../components/voice-recording/voice-recording.component';
 import { CommonModule, JsonPipe, NgStyle, UpperCasePipe } from '@angular/common';
 import { MenuComponent } from '../../../components/menu/menu.component';
 import { SummaryDialogComponent } from "../../../../patients/components/summary-dialog/summary-dialog.component";
@@ -35,7 +36,7 @@ export interface FormTemplate {
 
 @Component({
   selector: 'app-general',
-  imports: [AudioRecorderComponent, UpperCasePipe, JsonPipe, NgStyle, ReactiveFormsModule, CommonModule, MenuComponent, SummaryDialogComponent],
+  imports: [VoiceRecordingComponent, UpperCasePipe, JsonPipe, NgStyle, ReactiveFormsModule, CommonModule, MenuComponent, SummaryDialogComponent],
   templateUrl: './general.component.html',
   styles: ``
 })
