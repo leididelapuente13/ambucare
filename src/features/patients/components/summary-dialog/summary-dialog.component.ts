@@ -9,8 +9,8 @@ import { SummaryDialogService } from './summary-dialog.service';
 })
 export class SummaryDialogComponent {
   visible = false;
-
-   dialogService = inject(SummaryDialogService);
+  dialogService = inject(SummaryDialogService);
+  patientSummary = this.dialogService.patientSummary();
 
   ngOnInit() {
     this.dialogService.showDialog$.subscribe(() => {
