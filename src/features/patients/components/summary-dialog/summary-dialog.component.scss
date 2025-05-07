@@ -10,6 +10,27 @@
   }
 }
 
+::ng-deep .p-dialog .p-dialog-content {
+  overflow-x: hidden !important;
+  white-space: normal !important;
+}
+
+::ng-deep markdown {
+  display: block;
+  overflow-x: hidden;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+::ng-deep markdown p,
+::ng-deep markdown li,
+::ng-deep markdown code,
+::ng-deep markdown pre {
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
 :host ::ng-deep .markdown-body {
   h1 {
     font-size: 1.5rem;

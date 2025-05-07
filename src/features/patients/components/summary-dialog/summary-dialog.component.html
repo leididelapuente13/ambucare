@@ -5,9 +5,11 @@
   [style]="{ width: '50rem' }"
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
   [maximizable]="true"
+  [blockScroll]="true"
 >
   <div class="markdown-body">
     <markdown [data]="patientSummary()"></markdown>
-    <div [innerHTML]="summaryParsed()"></div>
+    <markdown [data]="patientSummaryFormatted"></markdown>
+    <!-- <div [innerHTML]="summaryParsed()"></div> -->
   </div>
 </p-dialog>

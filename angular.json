@@ -97,7 +97,6 @@
               }
             ],
             "styles": [
-              "node_modules/github-markdown-css/github-markdown.css",
               "src/styles.scss"
             ],
             "scripts": []

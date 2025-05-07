@@ -28,5 +28,4 @@ export class SummaryDialogService {
   triggerShow() {
     this.showDialogSubject.next();
   }
-
 }
