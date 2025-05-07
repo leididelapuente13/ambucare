@@ -1,8 +1,8 @@
 <p-dialog
-  header="Resumen del Paciente"
+  [showHeader]="false"
   [modal]="true"
   [(visible)]="visible"
-  [style]="{ width: '50rem' }"
+  [style]="{ width: '50rem', paddingBlock: '2rem' }"
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
   [maximizable]="true"
   [blockScroll]="true"
