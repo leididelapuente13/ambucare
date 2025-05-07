@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, signal, computed, ChangeDetectorRef } from '@angular/core';
+import { Component, signal, computed, ChangeDetectorRef, inject } from '@angular/core';
+import { VoiceRecordingService } from './voice-recording.service';
 
 @Component({
   selector: 'forms-voice-recording',
@@ -8,13 +9,14 @@ import { Component, signal, computed, ChangeDetectorRef } from '@angular/core';
   imports: [NgClass]
 })
 export class VoiceRecordingComponent {
+  voiceRecordingService = inject(VoiceRecordingService);
+
   private mediaRecorder!: MediaRecorder;
   private chunks: Blob[] = [];
   private startTime = 0;
   private maxDuration = 20 * 60;
   private intervalId: any;
 
-  // Signals
   isRecording = signal(false);
   isPaused = signal(false);
   isLoading = signal(false);
@@ -22,7 +24,6 @@ export class VoiceRecordingComponent {
   audioBlob = signal<Blob | null>(null);
   audioUrl = signal<string | null>(null);
 
-  // Computed signal for display
   formattedTime = computed(() => {
     const total = this.elapsedTime();
     const minutes = Math.floor(total / 60).toString().padStart(2, '0');
@@ -46,14 +47,14 @@ export class VoiceRecordingComponent {
 
       this.mediaRecorder.onstop = () => {
         this.isLoading.set(true);
-        this.cdr.detectChanges(); // ensure loading shows
+        this.cdr.detectChanges();
 
         const blob = new Blob(this.chunks, { type: 'audio/webm' });
         const url = URL.createObjectURL(blob);
         this.audioBlob.set(blob);
         this.audioUrl.set(url);
         this.isLoading.set(false);
-        this.cdr.detectChanges(); // update UI
+        this.cdr.detectChanges();
       };
 
       this.mediaRecorder.start();
@@ -97,6 +98,9 @@ export class VoiceRecordingComponent {
     a.href = this.audioUrl()!;
     a.download = 'grabacion.webm';
     a.click();
+    console.log('blob', this.audioBlob());
+    console.log('blob', this.audioBlob());
+    this.voiceRecordingService.storeMedicalRecordings(this.audioBlob()!);
   }
 
   private startTimer() {

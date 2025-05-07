@@ -1,5 +1,34 @@
-<p-dialog header="Resumen del Paciente" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
-  <p>
-    {{patientSummary}}
-  </p>
+<p-dialog
+  header="Resumen del Paciente"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '50rem' }"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [maximizable]="true"
+>
+  <div class="markdown-body">
+    <markdown [data]="patientSummary"></markdown>
+  </div>
+  <!-- <markdown>
+    Nota SOAP\n\n## SUBJECTIVO (S)\n- Queja principal: Dolor lumbar\n- Historia
+    de la enfermedad actual: \n - Dolor lumbar de 4 días de evolución\n -
+    Asociado a esfuerzo físico\n - No irradiado a extremidades inferiores\n -
+    Intensidad del dolor: 6/10\n - No mejora con analgésicos convencionales\n-
+    Antecedentes médicos:\n - No tiene antecedentes alérgicos a los AINEs\n -
+    Antecedentes familiares de hipertensión y diabetes\n\n## OBJETIVO (O)\n-
+    Signos vitales:\n - Presión arterial: 120/70 mmHg\n - Frecuencia cardíaca:
+    78 bpm\n - Frecuencia respiratoria: 18 rpm\n - Saturación de oxígeno:
+    100%\n- Examen físico:\n - Pulmones claros y bien ventilados\n - Abdomen
+    blando, bien depresible, sin masas\n - Extremidades sin edema, pulsos
+    presentes\n - Sistema nervioso central: sin déficit motor ni sensitivo\n -
+    Prueba de Lasègue positiva en el lado derecho\n\n## EVALUACIÓN (A)\n-
+    Diagnóstico:\n - Lumbago agudo probablemente asociado a esfuerzo físico\n-
+    Razonamiento clínico:\n - Los síntomas y hallazgos clínicos son consistentes
+    con lumbago agudo, descartando otros diagnósticos diferenciales.\n\n## PLAN
+    (P)\n- Recomendaciones de tratamiento:\n - Reposo\n - Naproxeno 500 mg cada
+    12 horas\n - Metocarbamol 750 mg cada 12 horas\n - Dexametasona 4 mg
+    intramuscular\n- Seguimiento:\n - Control en una semana\n- Educación al
+    paciente:\n - Importancia del reposo y adherencia al tratamiento
+    prescrito\n\nInformación limitada disponible en algunas secciones.
+  </markdown> -->
 </p-dialog>
