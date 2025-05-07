@@ -9,24 +9,24 @@ export class SummaryDialogService {
   showDialog$ = this.showDialogSubject.asObservable();
 
   // TODO: add interfce for summary
-  patientSummary = signal({});
+  patientSummary = signal('');
   isLoading = signal<boolean>(false);
 
-  constructor(){
-    this.getPatientSummary('79341');
-  }
-
-  triggerShow() {
-    this.showDialogSubject.next();
+  constructor() {
+    this.getPatientSummary('1027');
   }
 
   getPatientSummary(patientId: string) {
     // TODO: add base url to .envs
-    this.http.get(`https://zmmzq2q6-3000.use2.devtunnels.ms/v1/patients/79341/clinical-summary`).subscribe((response) => {
+    this.http.get(`https://zmmzq2q6-3000.use2.devtunnels.ms/v1/patients/1027/clinical-summary`).subscribe((response: any) => {
       // TODOD: map response to an entity
-      this.patientSummary.set(response);
-      console.log('response', response);
+      console.log(JSON.stringify(response.data.summary));
+      this.patientSummary.set(response.data.summary);
     })
+  }
+
+  triggerShow() {
+    this.showDialogSubject.next();
   }
 
 }

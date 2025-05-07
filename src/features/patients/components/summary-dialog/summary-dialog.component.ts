@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
 import { MarkdownModule } from 'ngx-markdown';
 import { SummaryDialogService } from './summary-dialog.service';
-
+import { marked } from 'marked';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'patient-summary-dialog',
   imports: [Dialog, MarkdownModule],
@@ -12,55 +13,76 @@ import { SummaryDialogService } from './summary-dialog.service';
 export class SummaryDialogComponent {
   visible = false;
   dialogService = inject(SummaryDialogService);
-  // patientSummary = this.dialogService.patientSummary();
-  patientSummary = `
-  # Nota SOAP
-  
-  ## SUBJECTIVO (S)
-  - **Queja principal**: Dolor lumbar
-  - **Historia de la enfermedad actual**: 
-    - Dolor lumbar de 4 días de evolución
-    - Asociado a esfuerzo físico
-    - No irradiado a extremidades inferiores
-    - Intensidad del dolor: 6/10
-    - No mejora con analgésicos convencionales
-  - **Antecedentes médicos**:
-    - No tiene antecedentes alérgicos a los AINEs
-    - Antecedentes familiares de hipertensión y diabetes
-  
-  ## OBJETIVO (O)
-  - **Signos vitales**:
-    - Presión arterial: 120/70 mmHg
-    - Frecuencia cardíaca: 78 bpm
-    - Frecuencia respiratoria: 18 rpm
-    - Saturación de oxígeno: 100%
-  - **Examen físico**:
-    - Pulmones claros y bien ventilados
-    - Abdomen blando, bien depresible, sin masas
-    - Extremidades sin edema, pulsos presentes
-    - Sistema nervioso central: sin déficit motor ni sensitivo
-    - Prueba de Lasègue positiva en el lado derecho
-  
-  ## EVALUACIÓN (A)
-  - **Diagnóstico**:
-    - Lumbago agudo probablemente asociado a esfuerzo físico
-  - **Razonamiento clínico**:
-    - Los síntomas y hallazgos clínicos son consistentes con lumbago agudo, descartando otros diagnósticos diferenciales.
-  
-  ## PLAN (P)
-  - **Recomendaciones de tratamiento**:
-    - Reposo
-    - Naproxeno 500 mg cada 12 horas
-    - Metocarbamol 750 mg cada 12 horas
-    - Dexametasona 4 mg intramuscular
-  - **Seguimiento**:
-    - Control en una semana
-  - **Educación al paciente**:
-    - Importancia del reposo y adherencia al tratamiento prescrito
-  
-  **Información limitada disponible en algunas secciones.**
-  `;
-  
+  patientSummary = computed(() =>
+    this.dialogService.patientSummary().replace(/\\n/g, '\n').replace(/\s*```$/, '').trim()
+  );
+
+  // patientSummary = signal(`# Paciente Resumen de Historia Clínica
+      
+  //     **Nombre del Paciente:** Información no disponible en los datos proporcionados  
+  //     **Edad:** Información no disponible en los datos proporcionados  
+  //     **Sexo:** Información no disponible en los datos proporcionados  
+  //     **Fecha del Resumen:** 4 de octubre de 2024  
+  //     **Número de Historia Clínica:** AD0602
+      
+  //     ---
+      
+  //     ### 1. Motivo de la Última Visita
+      
+  //     Consulta de control para determinar si es alérgica a la amoxicilina.
+      
+  //     ---
+      
+  //     ### 2. Diagnóstico Principal (Previo)
+      
+  //     - Historia personal de alergia a otras drogas, medicamentos y sustancias biológicas no especificadas (Z889).
+      
+  //     ---
+      
+  //     ### 3. Medicamentos Actuales
+      
+  //     No se mencionan medicamentos actuales en el registro.
+      
+  //     ---
+      
+  //     ### 4. Alergias Conocidas
+      
+  //     - Alergia a amoxicilina, sulfas, metronidazol y pantoprazol (según refiere el paciente).
+      
+  //     ---
+      
+  //     ### 5. Historia Médica Relevante
+      
+  //     - El paciente refiere alergia a medicamentos desde sus primeros años de vida, incluyendo amoxicilina, sulfas, metronidazol y pantoprazol, con lesiones eritematopapulosas generalizadas.  
+  //     - Remitida para valoración y estudios de alergia a medicamentos.
+      
+  //     ---
+      
+  //     ### 6. Signos Vitales Recientes
+      
+  //     - Presión arterial: No especificada (se indica "/")  
+  //     - Frecuencia cardíaca: No especificada  
+  //     - Frecuencia respiratoria: No especificada  
+  //     - Temperatura: No especificada  
+  //     - Talla: No especificada  
+  //     - Peso: No especificado  
+  //     - Índice de Masa Corporal: No especificado
+      
+  //     ---
+      
+  //     ### 7. Pruebas Recientes Notables
+      
+  //     - Pruebas de alergia a medicamentos (en curso).
+      
+  //     ---
+      
+  //     ### 8. Plan Médico Actual
+      
+  //     - No tomar amoxicilina ni derivados.  
+  //     - Realización de pruebas de alergia a medicamentos.
+  //     `)
+
+  summaryParsed = computed(()=>marked.parse(this.patientSummary()))
 
   ngOnInit() {
     this.dialogService.showDialog$.subscribe(() => {
