@@ -15,26 +15,26 @@ export class PatientsPageComponent {
     {
       number: '1',
       patient: 'John Doe',
-      date: new Date('2023-10-01'),
-      receptionDate: new Date('2023-10-01'),
+      date: '2023-10-01',
+      receptionDate: '2023-10-01',
       service: 'General Checkup',
-      type: 'Consultation'
+      type: 'Medicina General'
     },
     {
       number: '2',
       patient: 'Jane Smith',
-      date: new Date('2023-10-02'),
-      receptionDate: new Date('2023-10-02'),
+      date: '2023-10-01',
+      receptionDate: '2023-10-01',
       service: 'Dental Checkup',
-      type: 'Consultation'
+      type: 'Medicina General'
     },
     {
       number: '3',
       patient: 'Alice Johnson',
-      date: new Date('2023-10-03'),
-      receptionDate: new Date('2023-10-03'),
+      date: '2023-10-01',
+      receptionDate: '2023-10-01',
       service: 'Eye Checkup',
-      type: 'Consultation'
+      type: 'Medicina General'
     }
   ]);
 

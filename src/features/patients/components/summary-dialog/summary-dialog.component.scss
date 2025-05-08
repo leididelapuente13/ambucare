@@ -31,19 +31,28 @@
   white-space: pre-wrap;
 }
 
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color: #1a202c;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #2d3748;
+}
+
 :host ::ng-deep .markdown-body {
   h1 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
-    color: #1a202c;
+    @extend .title;
   }
 
-  h2 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    color: #2d3748;
+  h2,
+  h3 {
+    @extend .subtitle;
   }
 
   p,
@@ -56,4 +65,8 @@
   ul {
     padding-left: 1.5rem;
   }
+}
+
+.patient-data h2 {
+  @extend .title;
 }

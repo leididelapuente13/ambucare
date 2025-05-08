@@ -1,15 +1,26 @@
 <p-dialog
-  [showHeader]="false"
   [modal]="true"
   [(visible)]="visible"
-  [style]="{ width: '50rem', paddingBlock: '2rem' }"
+  [style]="{ width: '50rem' }"
   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
   [maximizable]="true"
   [blockScroll]="true"
 >
+  <app-progress-bar [isLoading]="isLoadingSummary()"></app-progress-bar>
   <div class="markdown-body">
-    <markdown [data]="patientSummary()"></markdown>
-    <markdown [data]="patientSummaryFormatted"></markdown>
-    <!-- <div [innerHTML]="summaryParsed()"></div> -->
+    <!-- <markdown [data]="patientSummary()"></markdown> -->
+    <!-- <markdown [data]="patientSummaryFormatted"></markdown> -->
+    @if(!isLoadingSummary()){
+    <div class="patient-data">
+      <h2>Datos del Paciente</h2>
+      <p><strong>Nombre:</strong> {{ patientData().NombrePaciente }}</p>
+      <p><strong>Edad: </strong> {{ patientData().Edad }}</p>
+      <p>
+        <strong>Sexo: </strong>
+        {{ patientData().Sexo === "F" ? "Femenino" : "Masculino" }}
+      </p>
+    </div>
+    }
+    <div [innerHTML]="patientSummary()"></div>
   </div>
 </p-dialog>

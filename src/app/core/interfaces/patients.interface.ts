@@ -1,8 +1,8 @@
 export interface PatientAppointment {
   number: string;
   type: string;
-  date: Date;
-  receptionDate: Date;
+  date: string;
+  receptionDate: string;
   service: string;
   patient: string;
 }
