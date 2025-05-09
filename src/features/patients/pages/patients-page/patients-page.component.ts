@@ -1,8 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { TableModule } from 'primeng/table';
-import { PatientAppointment } from '../../../../app/core/interfaces/patients.interface';
-import { ButtonModule } from 'primeng/button';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+
+import { PatientAppointment } from '../../../../app/core/interfaces/patients.interface';
+import { PatientService } from '../../../../app/core/services/patient.service';
 @Component({
   selector: 'app-patients-page',
   imports: [TableModule, ButtonModule, RouterLink],
@@ -11,31 +14,12 @@ import { RouterLink } from '@angular/router';
 })
 export class PatientsPageComponent {
 
-  appointments = signal<PatientAppointment[]>([
-    {
-      number: '1',
-      patient: 'John Doe',
-      date: '2023-10-01',
-      receptionDate: '2023-10-01',
-      service: 'General Checkup',
-      type: 'Medicina General'
-    },
-    {
-      number: '2',
-      patient: 'Jane Smith',
-      date: '2023-10-01',
-      receptionDate: '2023-10-01',
-      service: 'Dental Checkup',
-      type: 'Medicina General'
-    },
-    {
-      number: '3',
-      patient: 'Alice Johnson',
-      date: '2023-10-01',
-      receptionDate: '2023-10-01',
-      service: 'Eye Checkup',
-      type: 'Medicina General'
-    }
-  ]);
+  patientService = inject(PatientService);
 
+  appointments = computed<PatientAppointment[]>(()=>this.patientService.appointments());
+  appointmentsLoading = computed(()=> this.patientService.loadingAppointments());
+  
+  constructor() {
+    this.patientService.getPatientAppointments();
+  }
 }

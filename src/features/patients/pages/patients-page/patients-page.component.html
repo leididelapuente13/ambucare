@@ -9,9 +9,11 @@
       </div>
     </div>
   </header>
-  <section class=" bg-red-50 mx-auto md:w-[80%] lg:w-[80%]">
+  <section class="bg-red-50 mx-auto md:w-[80%] lg:w-[80%]">
     <p-table
       [value]="appointments()"
+      [loading]="appointmentsLoading()"
+      stripedRows
       [paginator]="true"
       [rows]="5"
       [scrollable]="true"
@@ -23,9 +25,7 @@
       <ng-template #header>
         <tr>
           <th>Cita No.</th>
-          <th>Tipo de cita</th>
           <th>Fecha de la cita</th>
-          <th>Fecha de Recepción</th>
           <th>Paciente</th>
           <th>Servicio</th>
           <th>Atender</th>
@@ -33,12 +33,10 @@
       </ng-template>
       <ng-template #body let-appointment>
         <tr>
-          <td>{{ appointment.number }}</td>
-          <td>{{ appointment.type }}</td>
-          <td>{{ appointment.date }}</td>
-          <td>{{ appointment.receptionDate }}</td>
-          <td>{{ appointment.patient }}</td>
-          <td>{{ appointment.service }}</td>
+          <td>{{ appointment.IdCita }}</td>
+          <td>{{ appointment.FechaCita }}</td>
+          <td>{{ appointment.Paciente }}</td>
+          <td>{{ appointment.Servicio }}</td>
           <td>
             <button
               pButton
@@ -47,8 +45,16 @@
               size="small"
               text
             >
-            <a routerLink="/medical-record"><i class="pi pi-arrow-up-right"></i></a>
-          </button>
+              <a [routerLink]="`medical-record/${appointment.IdPaciente}`"><i class="pi pi-arrow-up-right"></i></a>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #loadingBodyTemplate>
+        <tr>
+          <td colspan="5" class="text-center">
+            <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+            <p>Cargando datos...</p>
           </td>
         </tr>
       </ng-template>
