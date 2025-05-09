@@ -1,8 +1,8 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Dialog } from 'primeng/dialog';
 import { MarkdownModule } from 'ngx-markdown';
 import { SummaryDialogService } from './summary-dialog.service';
-import { marked } from 'marked';
 import { ProgressBarComponent } from "../../../../shared/components/progress-bar/progress-bar.component";
 @Component({
   selector: 'patient-summary-dialog',
@@ -13,6 +13,7 @@ import { ProgressBarComponent } from "../../../../shared/components/progress-bar
 export class SummaryDialogComponent {
   visible = false;
   dialogService = inject(SummaryDialogService);
+  route = inject(ActivatedRoute);
   isLoadingSummary = computed(() => this.dialogService.loadingSummary());
   patientData = computed(() => this.dialogService.patientData());
   patientSummary = computed(() =>
@@ -23,6 +24,12 @@ export class SummaryDialogComponent {
       .replace(/\s*```html/g, '')
       .trim()
   );
+  patientId : string | null = null;
+
+  constructor() {
+    this.patientId = this.route.snapshot.paramMap.get('patientId');
+    this.dialogService.getPatientSummary(this.patientId!);
+  }
 
   ngOnInit() {
     this.dialogService.showDialog$.subscribe(() => {

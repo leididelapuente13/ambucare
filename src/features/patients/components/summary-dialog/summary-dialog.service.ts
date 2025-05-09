@@ -1,7 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Subject } from 'rxjs';
-import { PatientData, PatientSummaryResponse } from '../../../../app/core/interfaces/response.interface';
+import { PatientSummaryResponse } from '../../../../app/core/interfaces/response.interface';
+import { environment } from '../../../../environments/environment.development';
+import { BasePatientInformation } from '../../../../app/core/interfaces/patients.interface';
 
 @Injectable({ providedIn: 'root' })
 export class SummaryDialogService {
@@ -10,22 +12,17 @@ export class SummaryDialogService {
   private showDialogSubject = new Subject<void>();
   public showDialog$ = this.showDialogSubject.asObservable();
 
-  // TODO: add interfce for summary
-  patientData = signal<PatientData>({
+  patientData = signal<BasePatientInformation>({
     Sexo: '',
-    Edad: '0',
+    Edad: '',
     NombrePaciente: ''
   });
   patientSummary = signal('');
   loadingSummary = signal<boolean>(true);
 
-  constructor() {
-    this.getPatientSummary('1027');
-  }
-
   getPatientSummary(patientId: string) {
-    // TODO: add base url to .envs
-    this.http.get<PatientSummaryResponse>(`https://zmmzq2q6-3000.use2.devtunnels.ms/v1/patients/2723/clinical-summary`).subscribe((response: PatientSummaryResponse) => {
+    this.loadingSummary.set(true);
+    this.http.get<PatientSummaryResponse>(`${environment.API_URL}patients/${patientId}/clinical-summary`).subscribe((response: PatientSummaryResponse) => {
       // TODOD: map response to an entity
       this.loadingSummary.set(false);
       this.patientSummary.set(response.data.summary);
