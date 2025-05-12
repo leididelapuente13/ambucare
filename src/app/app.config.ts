@@ -9,7 +9,6 @@ import Aura from '@primeng/themes/aura';
 
 import { routes } from './app.routes';
 import { definePreset } from '@primeng/themes';
-import { provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -54,6 +53,5 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    provideMarkdown()
   ]
 }
