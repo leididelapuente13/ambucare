@@ -1,0 +1,44 @@
+<main class="flex gap-2">
+  <form-side-bar />
+  <div #panel class="bg-[#e9eefe] mx-auto pb-9">
+    <form class="flex flex-col gap-4 mx-8 mt-4 md:mx-auto">
+      <form-header />
+      <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
+        <form-section-title title="Datos de la consulta" />
+        <!-- <p class="font-medium text-gray-600">
+          Fecha de la consulta: {{ appoinmentDate }}
+        </p> -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <!-- <div>
+            <form-label label="Plan / Administradora" />
+          </div> -->
+          <form-select label="Plan / Administradora" id="plan" />
+          <form-select label="Tipo de consulta" id="tipo_administradora" />
+          <form-textarea
+            label="Motivo de consulta"
+            id="motivo_consulta"
+            class="md:col-span-2"
+          />
+          <form-textarea
+            label="Enfermedad actual"
+            id="enefermedad_actual"
+            class="md:col-span-2"
+          />
+        </div>
+      </section>
+      <form-vital-signs />
+      <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
+        <form-textarea label="Resumen de datos positivos" />
+      </section>
+      <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
+        <form-textarea label="Resultados de examenes" />
+      </section>
+      <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
+        <form-textarea label="Analisis" />
+      </section>
+      <form-rips />
+    </form>
+    <forms-menu />
+  </div>
+  <patient-summary-dialog />
+</main>

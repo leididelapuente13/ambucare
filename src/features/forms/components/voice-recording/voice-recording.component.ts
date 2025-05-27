@@ -3,7 +3,7 @@ import { Component, signal, computed, ChangeDetectorRef, inject } from '@angular
 import { VoiceRecordingService } from './voice-recording.service';
 
 @Component({
-  selector: 'forms-voice-recording',
+  selector: 'form-voice-recording',
   standalone: true,
   templateUrl: './voice-recording.component.html',
   imports: [NgClass]

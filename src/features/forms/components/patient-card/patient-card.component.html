@@ -1,0 +1,30 @@
+<div class="w-[80%] rounded-md card-gradient p-4 text-sm mx-auto shadow-sm">
+  <p class="font-bold">{{ patient()?.Paciente | uppercase }}</p>
+  <div class="flex flex-col gap-2 mt-2">
+    <card-text key="Identificación" [value]="patient()?.Identificacion" />
+    <card-text key="Sexo" [value]="patient()?.Sexo" />
+    <card-text key="Edad" [value]="patient()?.EdadTexto" />
+    <card-text key="Dirección" [value]="patient()?.DirAfil" />
+
+
+    <!-- <p><span class="text-left">Municipio: </span> {{ patient().Telefono }}</p> -->
+    <!-- <p><span class="text-left">Ocupación: </span> {{ patient().Ocupacion }}</p> -->
+    <!-- <p><span class="text-left">Entidad: </span> {{ patient()?.Entidad }}</p> -->
+    <!-- <p class="flex place-items-baseline gap-1" [ngClass]="{'hidden': patient()?.Sexo !== 'F'}">
+      <span class="text-left">Embarazada: </span>
+      <p-checkbox size="small" [binary]="true" [value]="patient()?.Embarazada"/>
+    </p> -->
+    <!-- <p>
+      <span class="text-left">Fecha de ingreso institución: </span>
+      {{ patient()?.FechaCita }}
+    </p> -->
+    <p>
+      <span class="text-left">Fecha de la cita: </span>
+      {{ patient()?.FechaCita }}
+    </p>
+    <!-- <p>
+      <span class="text-left">Unidad funcional actual: </span>
+      {{ patient().unidadFuncionalActual }}
+    </p> -->
+  </div>
+</div>

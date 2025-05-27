@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { GeneralComponent } from '../features/forms/static/pages/general/general.component';
 import { PatientsPageComponent } from '../features/patients/pages/patients-page/patients-page.component';
+import { ClinicalRecordPageComponent } from '../features/forms/static/pages/clinical-record-page/clinical-record-page.component';
 
 export const routes: Routes = [
   {
@@ -8,7 +8,7 @@ export const routes: Routes = [
     component: PatientsPageComponent
   },
   {
-    path: 'medical-record/:patientId',
-    component: GeneralComponent
-  }
+    path: 'clinical-record/:patientId',
+    component: ClinicalRecordPageComponent
+  },
 ];

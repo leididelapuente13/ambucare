@@ -4,9 +4,10 @@ import { Dialog } from 'primeng/dialog';
 import { MarkdownModule } from 'ngx-markdown';
 import { SummaryDialogService } from './summary-dialog.service';
 import { ProgressBarComponent } from "../../../../shared/components/progress-bar/progress-bar.component";
+import { PatientCardComponent } from "../patient-card/patient-card.component";
 @Component({
   selector: 'patient-summary-dialog',
-  imports: [Dialog, MarkdownModule, ProgressBarComponent],
+  imports: [Dialog, MarkdownModule, ProgressBarComponent, PatientCardComponent],
   templateUrl: './summary-dialog.component.html',
   styleUrl: 'summary-dialog.component.scss',
 })

@@ -1,1 +1,17 @@
-<p>top-bar works!</p>
+<p-menubar>
+  <ng-template #start>
+    <img
+      ngSrc="/assets/siosLogo.png"
+      alt="SIOS Logo"
+      priority
+      width="40"
+      height="40"
+      class="mx-auto"
+    />
+    <div class="flex flex-col ml-3">
+      <h1 class="font-bold">SIOS Ambucare</h1>
+      <h2 class="text-sm text-gray-500 font-thin">Agenda de Pacientes</h2>
+    </div>
+  </ng-template>
+  <ng-template #end> </ng-template>
+</p-menubar>

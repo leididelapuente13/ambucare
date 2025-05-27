@@ -1,0 +1,25 @@
+<div class="flex gap-1" [ngClass]="{ 'flex-col' : !secondaryLabel }" >
+  <!-- Label -->
+  <form-label [id]="id" [label]="label" [ngClass]="{ 'w-[150px] text-left': secondaryLabel }" />
+
+  <!-- Input -->
+  <input
+    pInputText
+    [id]="id"
+    [placeholder]="placeholder"
+    [type]="type"
+    class="p-inputtext"
+    [ngClass]="{ 'w-[60px]': secondaryLabel }"
+  />
+
+  <!-- Optional Secondary Label -->
+  @if (secondaryLabel) {
+  <form-label
+    [id]="id"
+    [label]="secondaryLabel"
+    class="text-gray-500 w-[50px]"
+  />
+  }
+</div>
+
+

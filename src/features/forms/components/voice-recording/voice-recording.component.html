@@ -1,20 +1,20 @@
-<div class="text-white font-medium flex flex-col gap-1.5 mt-3 md:mt-0">
+<div class="text-black font-medium flex flex-col gap-1.5 mt-3 md:mt-0">
   <div class="flex gap-8 justify-between bg-white rounded-md py-1 px-2 text-black">
-    <button (click)="start()" [disabled]="isRecording()">
+    <button type="button" (click)="start()" [disabled]="isRecording()">
       <i [ngClass]="{'pi pi-circle-fill' : isRecording() && !isPaused()}" style="color: darkred"></i>
       <i [ngClass]="{'pi pi-microphone' : !isRecording()}"></i>
     </button>
-    <button (click)="pauseResume()" [disabled]="!isRecording()">
+    <button type="button" (click)="pauseResume()" [disabled]="!isRecording()">
       @if (isPaused()) {
       <i class="pi pi-play"></i>
       }@else {
       <i class="pi pi-pause"></i>
       }
     </button>
-    <button (click)="stop()" [disabled]="!isRecording()">
+    <button type="button" (click)="stop()" [disabled]="!isRecording()">
       <i class="pi pi-stop"></i>
     </button>
-    <button (click)="download()" [disabled]="!audioUrl()">
+    <button type="button" (click)="download()" [disabled]="!audioUrl()">
       <i class="pi pi-download"></i>
     </button>
   </div>

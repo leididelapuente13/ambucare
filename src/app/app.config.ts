@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
         preset: definePreset(Aura, {
           semantic: {
             primary: {
-              50: '{blue.50}',
+              50:  '{blue.50}',
               100: '{blue.100}',
               200: '{blue.200}',
               300: '{blue.300}',

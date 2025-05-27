@@ -9,15 +9,7 @@
   <app-progress-bar [isLoading]="isLoadingSummary()"></app-progress-bar>
   <div class="markdown-body">
     @if(!isLoadingSummary()){
-    <div class="patient-data">
-      <h2>Datos del Paciente</h2>
-      <p><strong>Nombre:</strong> {{ patientData().NombrePaciente }}</p>
-      <p><strong>Edad: </strong> {{ patientData().Edad }}</p>
-      <p>
-        <strong>Sexo: </strong>
-        {{ patientData().Sexo === "F" ? "Femenino" : "Masculino" }}
-      </p>
-    </div>
+    <!-- <patient-card [patientData]="patientData()"></patient-card> -->
     <div [innerHTML]="patientSummary()"></div>
     }
   </div>
