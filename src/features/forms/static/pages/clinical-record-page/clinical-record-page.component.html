@@ -5,15 +5,18 @@
       <form-header />
       <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
         <form-section-title title="Datos de la consulta" />
-        <!-- <p class="font-medium text-gray-600">
+        <p class="font-medium text-gray-600">
           Fecha de la consulta: {{ appoinmentDate }}
-        </p> -->
+        </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-          <!-- <div>
+          <div>
             <form-label label="Plan / Administradora" />
-          </div> -->
-          <form-select label="Plan / Administradora" id="plan" />
-          <form-select label="Tipo de consulta" id="tipo_administradora" />
+            <p>{{patientAppoinmentData()?.Administradora}}</p>
+          </div>
+          <div>
+            <form-label label="Tipo de consulta" />
+            <p>{{patientAppoinmentData()?.Servicio}}</p>
+          </div>
           <form-textarea
             label="Motivo de consulta"
             id="motivo_consulta"

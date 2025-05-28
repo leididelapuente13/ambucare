@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { HeaderComponent } from "../../../components/header/header.component";
 import { TitleComponent } from "../../../components/sections/title/title.component";
 import { InputTextModule } from 'primeng/inputtext';
@@ -11,13 +11,16 @@ import { SelectComponent } from "../../../components/inputs/select/select.compon
 import { SummaryDialogComponent } from "../../../../patients/components/summary-dialog/summary-dialog.component";
 import { SideBarComponent } from "../../../components/side-bar/side-bar.component";
 import { PatientService } from '../../../../../app/core/services/patient.service';
+import { ToastComponent } from "../../../../../shared/components/toast/toast.component";
+import { LabelComponent } from "../../../components/inputs/label/label.component";
 
 @Component({
   selector: 'app-clinical-record-page',
-  imports: [HeaderComponent, TitleComponent, InputTextModule, TextareaComponent, MenuComponent, VitalSignsComponent, RipsComponent, SelectComponent, SplitterModule, SummaryDialogComponent, SideBarComponent],
+  imports: [HeaderComponent, TitleComponent, InputTextModule, TextareaComponent, MenuComponent, VitalSignsComponent, RipsComponent, SelectComponent, SplitterModule, SummaryDialogComponent, SideBarComponent, ToastComponent, LabelComponent],
   templateUrl: './clinical-record-page.component.html',
 })
 export class ClinicalRecordPageComponent {
+  patientService = inject(PatientService);
   appoinmentDate = new Date().toLocaleDateString('es-ES');
-  patientData = inject(PatientService).getPatientData();
+  patientAppoinmentData = computed(() => this.patientService.getPatientData());
 }
