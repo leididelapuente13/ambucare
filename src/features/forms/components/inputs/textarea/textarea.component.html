@@ -6,6 +6,8 @@
     [id]="id"
     rows="5"
     cols="30"
+    autoResize
+    value="{{ value == null ? '' : value }}"
   ></textarea>
   <!-- @if (control?.invalid && control?.touched) {
   <small class="text-red-500">

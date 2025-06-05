@@ -17,4 +17,5 @@ export class InputComponent {
   @Input() type: string = 'text';
   @Input() control!: FormControl;
   @Input() errorMessage: string = 'Este campo es requerido.';
+  @Input() value : string | number | null = null;
 }

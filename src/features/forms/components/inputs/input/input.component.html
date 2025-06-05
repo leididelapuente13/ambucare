@@ -10,6 +10,7 @@
     [type]="type"
     class="p-inputtext"
     [ngClass]="{ 'w-[60px]': secondaryLabel }"
+    value="{{ value == null ? '' : value }}"
   />
 
   <!-- Optional Secondary Label -->

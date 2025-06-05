@@ -1,12 +1,13 @@
 import { NgClass } from '@angular/common';
 import { Component, signal, computed, ChangeDetectorRef, inject } from '@angular/core';
 import { VoiceRecordingService } from './voice-recording.service';
+import { ProgressBarComponent } from '../../../../shared/components/progress-bar/progress-bar.component'
 
 @Component({
   selector: 'form-voice-recording',
   standalone: true,
   templateUrl: './voice-recording.component.html',
-  imports: [NgClass]
+  imports: [NgClass, ProgressBarComponent]
 })
 export class VoiceRecordingComponent {
   voiceRecordingService = inject(VoiceRecordingService);
@@ -23,6 +24,7 @@ export class VoiceRecordingComponent {
   elapsedTime = signal(0);
   audioBlob = signal<Blob | null>(null);
   audioUrl = signal<string | null>(null);
+  isUploadingAudio = computed(()=>this.voiceRecordingService.isUploadingAudio);
 
   formattedTime = computed(() => {
     const total = this.elapsedTime();
@@ -31,7 +33,9 @@ export class VoiceRecordingComponent {
     return `${minutes}:${seconds}`;
   });
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    console.log(this.isUploadingAudio())
+   }
 
   start() {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {

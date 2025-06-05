@@ -1,3 +1,4 @@
+<app-toast toastSeverity="error" toastMessage="Si bro"></app-toast>
 <main class="flex gap-2">
   <form-side-bar />
   <div #panel class="bg-[#e9eefe] mx-auto pb-9">
@@ -11,35 +12,37 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
           <div>
             <form-label label="Plan / Administradora" />
-            <p>{{patientAppoinmentData()?.Administradora}}</p>
+            <p>{{ patientAppoinmentData()?.Administradora }}</p>
           </div>
           <div>
             <form-label label="Tipo de consulta" />
-            <p>{{patientAppoinmentData()?.Servicio}}</p>
+            <p>{{ patientAppoinmentData()?.Servicio }}</p>
           </div>
           <form-textarea
             label="Motivo de consulta"
             id="motivo_consulta"
             class="md:col-span-2"
+            value="{{ transcript().motivoConsulta }}"
           />
           <form-textarea
             label="Enfermedad actual"
             id="enefermedad_actual"
             class="md:col-span-2"
+            value="{{ transcript().enfermedadActual }}"
           />
         </div>
       </section>
       <form-vital-signs />
       <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
-        <form-textarea label="Resumen de datos positivos" />
+        <form-textarea label="Resumen de datos positivos" value="{{ transcript().resumenDatosPositivos }}" />
       </section>
       <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
-        <form-textarea label="Resultados de examenes" />
+        <form-textarea label="Resultados de examenes" value="{{ transcript().resultadosExamenes }}" />
       </section>
       <section class="bg-white shadow-md rounded px-4 pt-6 pb-8">
-        <form-textarea label="Analisis" />
+        <form-textarea label="Analisis" value="{{ transcript().analisis }}" />
       </section>
-      <form-rips />
+      <!-- <form-rips /> -->
     </form>
     <forms-menu />
   </div>

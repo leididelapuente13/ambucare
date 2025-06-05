@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ToastModule } from 'primeng/toast';
+import { ToastService } from './toast.service';
+
 
 @Component({
   selector: 'app-toast',
-  imports: [],
-  template: `<p>toast works!</p>`,
-  styleUrl: './toast.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ToastModule],
+  templateUrl: './toast.component.html',
 })
-export class ToastComponent { }
+export class ToastComponent {
+  toastService = inject(ToastService);
+}

@@ -23,6 +23,7 @@
     <p class="font-semibold">({{ formattedTime() }})</p>
   </div>
   }
+
   @if (audioUrl()) {
   <audio
     #audioPlayer
@@ -31,4 +32,8 @@
     class="opacity-90 h-[30px] bg-white rounded-sm"
   ></audio>
   }
+
+  <!-- @if (isUploadingAudio()) {
+  <app-progress-bar [isLoading]="!!isUploadingAudio()"></app-progress-bar>
+  } -->
 </div>

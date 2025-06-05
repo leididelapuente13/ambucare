@@ -13,6 +13,9 @@ import { SideBarComponent } from "../../../components/side-bar/side-bar.componen
 import { PatientService } from '../../../../../app/core/services/patient.service';
 import { ToastComponent } from "../../../../../shared/components/toast/toast.component";
 import { LabelComponent } from "../../../components/inputs/label/label.component";
+import { ToastService } from '../../../../../shared/components/toast/toast.service';
+import { TranscriptDocument } from '../../../../../app/core/interfaces/response.interface';
+import { VoiceRecordingService } from '../../../components/voice-recording/voice-recording.service';
 
 @Component({
   selector: 'app-clinical-record-page',
@@ -20,7 +23,21 @@ import { LabelComponent } from "../../../components/inputs/label/label.component
   templateUrl: './clinical-record-page.component.html',
 })
 export class ClinicalRecordPageComponent {
+  toastService = inject(ToastService);
   patientService = inject(PatientService);
+  voiceRecordingService = inject(VoiceRecordingService);
+
   appoinmentDate = new Date().toLocaleDateString('es-ES');
   patientAppoinmentData = computed(() => this.patientService.getPatientData());
+
+  transcript  = this.voiceRecordingService.transcript;
+
+  showToast() {
+    this.toastService.showToast(
+      'No bro',
+      'info'
+    );
+  }
+
+
 }

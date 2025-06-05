@@ -17,4 +17,6 @@ export class TextareaComponent {
   @Input() rows: number = 4;
   @Input() control!: FormControl;
   @Input() errorMessage: string = 'This field is required.';
+    @Input() value : string | number | null = null;
+  
 }
